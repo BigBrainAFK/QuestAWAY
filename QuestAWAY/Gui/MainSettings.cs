@@ -1,15 +1,10 @@
-﻿using Dalamud.Interface;
-using Dalamud.Interface.Colors;
+﻿using Dalamud.Interface.Colors;
 using Dalamud.Interface.Utility;
 using ECommons.ImGuiMethods;
 using ImGuiNET;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuestAWAY.Gui
 {

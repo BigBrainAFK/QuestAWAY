@@ -1,30 +1,23 @@
-﻿using Dalamud;
-using Dalamud.Game.Command;
-using Dalamud.Game.Internal;
+﻿using Dalamud.Game.Command;
+using Dalamud.Hooking;
 using Dalamud.Interface;
-using Dalamud.Logging;
+using Dalamud.Interface.Internal;
+using Dalamud.Interface.Utility;
+using Dalamud.Interface.Windowing;
 using Dalamud.Plugin;
-using FFXIVClientStructs.FFXIV.Client.Graphics;
+using ECommons;
+using ECommons.Logging;
+using ECommons.Schedulers;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using ImGuiNET;
-using ImGuiScene;
+using QuestAWAY.Gui;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
-using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Dalamud.Hooking;
-using Dalamud.Interface.Windowing;
-using QuestAWAY.Gui;
-using ECommons;
-using Dalamud.Interface.Utility;
-using ECommons.Schedulers;
-using Dalamud.Interface.Internal;
 
 namespace QuestAWAY
 {
@@ -71,7 +64,8 @@ namespace QuestAWAY
         {
             //Dalamud doesn't lets reload plugin if exception is thrown by Dispose method. It is unwanted behavior, bypassing it.
             //Individual try-catches let as many things execute as possible
-            Safe(() => {
+            Safe(() =>
+            {
                 Svc.Framework.Update -= Tick;
                 Svc.PluginInterface.UiBuilder.Draw -= Draw;
                 Svc.PluginInterface.UiBuilder.Draw -= windowSystem.Draw;
@@ -157,7 +151,7 @@ namespace QuestAWAY
 
         internal void ClientState_TerritoryChanged(ushort e)
         {
-            if(!cfg.ZoneSettings.TryGetValue(e, out CurrentProfile))
+            if (!cfg.ZoneSettings.TryGetValue(e, out CurrentProfile))
             {
                 CurrentProfile = cfg;
             }
@@ -297,8 +291,8 @@ namespace QuestAWAY
         private void ProfilingRestart()
         {
             if (!profiling) return;
-            
-            totalTime += stopwatch.ElapsedTicks+1;
+
+            totalTime += stopwatch.ElapsedTicks + 1;
             totalTicks++;
             stopwatch.Restart();
         }
@@ -384,7 +378,7 @@ namespace QuestAWAY
             {
                 imageNode = (AtkImageNode*)mapIconNode->Component->UldManager.NodeList[4];
             }
-            else if(mapIconNode->Component->UldManager.NodeList[3]->Type == NodeType.Image)
+            else if (mapIconNode->Component->UldManager.NodeList[3]->Type == NodeType.Image)
             {
                 imageNode = (AtkImageNode*)mapIconNode->Component->UldManager.NodeList[3];
             }
@@ -468,10 +462,10 @@ namespace QuestAWAY
             var userLinesSet = userLines.ToHashSet();
             userLinesSet.RemoveWhere((string line) => { return line.Length == 0; });
             userLinesSet.UnionWith(CurrentProfile.HiddenTextures);
-            
+
             cfgHideSet = new byte[userLinesSet.Count][];
             var i = 0;
-            foreach(var e in userLinesSet)
+            foreach (var e in userLinesSet)
             {
                 cfgHideSet[i++] = Encoding.ASCII.GetBytes(e);
             }

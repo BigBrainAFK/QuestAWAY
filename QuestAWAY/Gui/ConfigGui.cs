@@ -1,15 +1,7 @@
-﻿using Dalamud.Interface;
-using Dalamud.Interface.Windowing;
+﻿using Dalamud.Interface.Windowing;
 using ECommons.ImGuiMethods;
 using ImGuiNET;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using static QuestAWAY.QuestAWAY;
 
 namespace QuestAWAY.Gui
 {
@@ -43,7 +35,7 @@ namespace QuestAWAY.Gui
                 ("Developer functions", DevSettings.Draw, null, true)
                 );
 
-            
+
         }
     }
 }

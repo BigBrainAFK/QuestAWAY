@@ -1,6 +1,6 @@
-﻿using System;
-using Dalamud.Game;
+﻿using Dalamud.Game;
 using ECommons.Logging;
+using System;
 
 namespace QuestAWAY;
 
@@ -16,7 +16,7 @@ internal class PluginAddressResolver
     //     sub_1405517F0(*a1);
     // sig that function
     private const string MapAreaSetVisibilityAndRotation = "E8 ?? ?? ?? ?? 66 0F 6E 44 24 ?? 48 8B CE";
-    
+
     // to update this sig:
     // breakpoint Component__GUI__AtkTooltipManager_ShowTooltip
     // slowly mouseover an icon on the minimap and nothing else, check the stack for the caller
@@ -26,7 +26,7 @@ internal class PluginAddressResolver
     // in that code address there should be something like "result = sub_141030B80(a1, *a2, a2[1]);" , in 6.1 it is the first function call
     // sig that sub_141030B80
     private const string NaviMapOnMouseMove = "E8 ?? ?? ?? ?? 8B F0 3B 87";
-    
+
     // in NaviMapOnMouseMove function, there's 3 ifs. this function is the second condition in all of them
     private const string CheckAtkCollisionNodeIntersect = "E8 ?? ?? ?? ?? 84 C0 75 B9";
 
@@ -34,7 +34,7 @@ internal class PluginAddressResolver
     // from AreaMap ReceiveEvent, enter the function called when a2==5 and a3==20
     // the the only unnamed function there
     private const string AreaMapOnMouseMove = "48 8B C4 53 56 48 83 EC 78";
-    
+
     private const string AddonAreaMapOnUpdate = "48 8B C4 48 89 48 08 55 57";
     private const string AddonAreaMapOnRefresh = "4C 8B DC 55 56 41 56 41 57 49 8D 6B A1";
     private const string AddonNaviMapOnUpdate = "48 8B C4 55 48 81 EC ?? ?? ?? ?? F6 81";

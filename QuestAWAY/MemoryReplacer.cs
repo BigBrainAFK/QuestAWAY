@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Dalamud;
-using Dalamud.Logging;
+﻿using Dalamud;
+using ECommons.Logging;
+using System;
 
 namespace QuestAWAY;
 

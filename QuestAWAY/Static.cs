@@ -1,7 +1,7 @@
-﻿global using static ECommons.GenericHelpers;
-global using ECommons.DalamudServices;
-global using static QuestAWAY.Static;
+﻿global using ECommons.DalamudServices;
+global using static ECommons.GenericHelpers;
 global using static QuestAWAY.QuestAWAY;
+global using static QuestAWAY.Static;
 using Dalamud.Interface;
 using Dalamud.Logging;
 using ImGuiNET;
